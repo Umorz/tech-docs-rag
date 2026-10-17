@@ -1,0 +1,8 @@
+[client]
+# "viewer" — скрывает девелоперское меню (3 точки в углу) и горячие клавиши,
+# в том числе подсказку "Clear caches" по нажатию C / Ctrl+C.
+toolbarMode = "viewer"
+
+[browser]
+# Не пытаться отправлять статистику использования в Streamlit Cloud.
+gatherUsageStats = false

@@ -1,0 +1,29 @@
+[project]
+name = "tech-docs-rag"
+version = "1.0.0"
+description = "Локальный гибридный поиск (BM25 + эмбеддинги, RRF) и RAG-ответы со ссылками по технической документации"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pymupdf>=1.23",       # извлечение текста из PDF
+    "python-docx>=1.0",    # .docx
+    "rapidfuzz>=3.0",      # исправление опечаток в запросе
+    "pymorphy3>=2.0",      # морфология русского языка
+    "watchdog>=3.0",       # переиндексация при изменении папки с документами
+]
+
+[project.optional-dependencies]
+web = ["streamlit>=1.30"]
+desktop = ["customtkinter>=5.2"]
+ocr = ["pytesseract>=0.3.10", "Pillow>=10.0"]          # нужен установленный Tesseract
+local-embeddings = ["sentence-transformers>=2.5", "numpy>=1.24", "hnswlib>=0.7"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

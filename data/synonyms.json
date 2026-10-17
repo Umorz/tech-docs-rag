@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "languages": ["ru", "en"],
+  "description": "Default synonym groups for RU/EN technical queries (Query-time step 3). Groups are intended for query expansion like (term1 OR term2 OR ...). Keep this file editable and domain-focused.",
+  "groups": [
+    {
+      "id": "datasheet_spec",
+      "terms": ["datasheet", "data sheet", "specification", "spec", "documentation", "manual", "даташит", "спецификация", "документация", "мануал", "описание"],
+      "tags": ["general"]
+    },
+    {
+      "id": "absolute_maximum_ratings",
+      "terms": ["absolute maximum ratings", "absolute maximum", "maximum ratings", "abs max", "абсолютные максимальные", "абсолютный максимум", "максимальные значения", "предельные параметры"],
+      "tags": ["limits"]
+    },
+    {
+      "id": "electrical_characteristics",
+      "terms": ["electrical characteristics", "characteristics", "specifications", "params", "параметры", "характеристики", "электрические характеристики", "электрические параметры"],
+      "tags": ["general"]
+    },
+    {
+      "id": "typical_characteristics",
+      "terms": ["typical characteristics", "typical", "typ", "performance", "типовые характеристики", "типовые", "типичное", "типовые параметры"],
+      "tags": ["general"]
+    },
+    {
+      "id": "pinout_pin_configuration",
+      "terms": ["pinout", "pin configuration", "pin assignment", "pin description", "pin", "распиновка", "назначение выводов", "описание выводов", "конфигурация выводов", "вывод"],
+      "tags": ["package"]
+    },
+    {
+      "id": "voltage",
+      "terms": ["voltage", "volt", "напряжение", "вольтаж"],
+      "tags": ["units"]
+    },
+    {
+      "id": "current",
+      "terms": ["current", "ampere", "amps", "ток", "ампер", "амперы"],
+      "tags": ["units"]
+    },
+    {
+      "id": "power",
+      "terms": ["power", "watt", "watts", "мощность", "ватт", "ватты"],
+      "tags": ["units"]
+    },
+    {
+      "id": "frequency",
+      "terms": ["frequency", "freq", "hz", "частота", "гц"],
+      "tags": ["units"]
+    },
+    {
+      "id": "temperature",
+      "terms": ["temperature", "temp", "junction temperature", "ambient temperature", "температура", "темп", "температура перехода", "температура окружающей среды"],
+      "tags": ["thermal"]
+    },
+    {
+      "id": "thermal_resistance",
+      "terms": ["thermal resistance", "theta ja", "theta jc", "rth", "тепловое сопротивление", "термическое сопротивление"],
+      "tags": ["thermal"]
+    },
+    {
+      "id": "voltage_regulator",
+      "terms": ["voltage regulator", "regulator", "linear regulator", "ldo", "stabilizer", "stabiliser", "регулятор напряжения", "стабилизатор", "стабилизатор напряжения", "линейный стабилизатор", "лдо"],
+      "tags": ["power"]
+    },
+    {
+      "id": "dc_dc_converter",
+      "terms": ["dc-dc", "dc dc", "converter", "switching regulator", "buck", "boost", "step-down", "step-up", "преобразователь", "импульсный стабилизатор", "понижающий", "повышающий"],
+      "tags": ["power"]
+    },
+    {
+      "id": "reference_voltage",
+      "terms": ["reference", "reference voltage", "vref", "опорное", "опорное напряжение", "референс"],
+      "tags": ["analog"]
+    },
+    {
+      "id": "adc",
+      "terms": ["adc", "a/d", "analog to digital", "analog-to-digital", "analog-to-digital converter", "аналого-цифровой", "ацп", "аналого цифровой преобразователь"],
+      "tags": ["mcu"]
+    },
+    {
+      "id": "dac",
+      "terms": ["dac", "d/a", "digital to analog", "digital-to-analog", "цифро-аналоговый", "цап", "цифро аналоговый преобразователь"],
+      "tags": ["mcu"]
+    },
+    {
+      "id": "resistor",
+      "terms": ["resistor", "resistance", "ohm", "резистор", "сопротивление", "ом"],
+      "tags": ["passive"]
+    },
+    {
+      "id": "capacitor",
+      "terms": ["capacitor", "capacitance", "cap", "конденсатор", "емкость", "ёмкость"],
+      "tags": ["passive"]
+    },
+    {
+      "id": "inductor",
+      "terms": ["inductor", "inductance", "choke", "coil", "дроссель", "катушка", "индуктивность"],
+      "tags": ["passive"]
+    },
+    {
+      "id": "diode",
+      "terms": ["diode", "диод"],
+      "tags": ["semiconductor"]
+    },
+    {
+      "id": "zener_diode",
+      "terms": ["zener", "zener diode", "стабилитрон", "диод зенера"],
+      "tags": ["semiconductor"]
+    },
+    {
+      "id": "transistor_mosfet",
+      "terms": ["transistor", "mosfet", "fet", "field effect transistor", "транзистор", "мосфет", "полевой транзистор"],
+      "tags": ["semiconductor"]
+    },
+    {
+      "id": "noise_ripple",
+      "terms": ["noise", "ripple", "psrr", "пульсации", "шум", "помехи"],
+      "tags": ["signal"]
+    },
+    {
+      "id": "efficiency",
+      "terms": ["efficiency", "η", "kpd", "кпд", "эффективность"],
+      "tags": ["power"]
+    },
+    {
+      "id": "enable_shutdown",
+      "terms": ["enable", "shutdown", "on/off", "turn on", "turn off", "включение", "выключение", "разрешение", "отключение"],
+      "tags": ["control"]
+    },
+    {
+      "id": "startup",
+      "terms": ["startup", "start-up", "power-up", "reset", "запуск", "старт", "включение питания", "сброс"],
+      "tags": ["control"]
+    }
+  ]
+}

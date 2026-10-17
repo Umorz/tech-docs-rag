@@ -1,0 +1,18 @@
+#!/bin/sh
+# Проверка на секреты перед каждым коммитом: gitleaks сканирует только то, что добавлено в индекс (git add).
+# Нашёл ключ, почту, внутренний IP или путь с именем пользователя - коммит отменяется.
+# Обойти в крайнем случае (только если находка ложная): git commit --no-verify
+
+GL=$(command -v gitleaks 2>/dev/null)
+[ -z "$GL" ] && GL="$LOCALAPPDATA/Microsoft/WinGet/Packages/Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe/gitleaks.exe"
+if [ ! -x "$GL" ]; then
+    echo "pre-commit: gitleaks не найден - коммит остановлен (установка: winget install Gitleaks.Gitleaks)" >&2
+    exit 1
+fi
+
+CFG="$(git rev-parse --show-toplevel)/.gitleaks.toml"
+if [ -f "$CFG" ]; then
+    exec "$GL" git --pre-commit --staged --redact --no-banner --verbose --config "$CFG"
+else
+    exec "$GL" git --pre-commit --staged --redact --no-banner --verbose
+fi

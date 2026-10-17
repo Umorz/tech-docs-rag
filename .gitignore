@@ -1,0 +1,15 @@
+# документы пользователя и всё, что из них построено: в репозиторий не попадают
+corpus/
+data/*
+!data/synonyms.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# секреты и логи
+.env
+.env.*
+*.log
