@@ -121,9 +121,8 @@ def run_reindex(
     """
     Run Step A (scan) + Step B (extract) + Step D (embed) as subprocesses.
 
-    Output of every subprocess is INHERITED from the parent process — so when
-    the desktop app is launched from a .bat, the user sees every line of
-    progress in the cmd window.
+    Output of every subprocess is INHERITED from the parent process — so the
+    user sees every line of progress in the terminal running watch_corpus.py.
 
     OCR is enabled by default — without it scanned PDFs (e.g. image-based
     Chinese/Japanese documents) extract zero text and become unsearchable.

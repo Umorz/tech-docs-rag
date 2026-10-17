@@ -1,8 +1,11 @@
 """Сквозная проверка без внешних сервисов: индексация своего корпуса -> поиск -> ссылка."""
+import subprocess
+import sys
+
 from src.index.db import connect
 from src.index.embeddings import HashEmbedder
 from src.index.hybrid import HybridOptions, hybrid_search_rrf
-from tests.conftest import build_index, run_step
+from tests.conftest import ROOT, build_index, run_step
 
 
 def test_all_formats_indexed(indexed):
@@ -40,3 +43,25 @@ def test_new_file_is_picked_up_on_rescan(tmp_path):
     build_index(corpus, db)
     out = run_step("step_c_query.py", "--db", str(db), "inductors")
     assert "b.txt" in out
+
+
+def run_repl(db, commands: str):
+    out = subprocess.run([sys.executable, "Main.py", "--db", str(db), "--mode", "hybrid", "--sem-backend", "hash",
+                          "--llm", "off", "--no-startup-prompts"],
+                         input=commands, capture_output=True, text=True, encoding="utf-8", cwd=ROOT)
+    return out.returncode, out.stdout + out.stderr
+
+
+def test_repl_answers_query_with_citation(indexed):
+    _, db = indexed
+    code, out = run_repl(db, ":sem hash_dim 384\noperating temperature\n:quit\n")
+    assert code == 0, out
+    assert "lm317.pdf:1:2" in out
+
+
+def test_repl_exits_cleanly_when_input_ends(tmp_path):
+    # без индекса консоль спрашивает, строить ли его; конец ввода - это «нет», а не падение
+    out = subprocess.run([sys.executable, "Main.py", "--db", str(tmp_path / "none.sqlite")],
+                         input="", capture_output=True, text=True, encoding="utf-8", cwd=ROOT)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert "Traceback" not in out.stderr

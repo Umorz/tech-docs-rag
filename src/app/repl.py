@@ -259,7 +259,12 @@ def _prompt_yes_no(question: str, *, default_yes: bool = True) -> bool:
     """
     suffix = "[Y/n]" if default_yes else "[y/N]"
     while True:
-        ans = input(f"{question} {suffix} ").strip().lower()
+        try:
+            ans = input(f"{question} {suffix} ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            # input ended (Ctrl+Z / Ctrl+D or piped commands): never start work unasked
+            print()
+            return False
         if not ans:
             return bool(default_yes)
         if ans in ("y", "yes", "1", "true", "on"):
@@ -1692,14 +1697,14 @@ def repl(state: AppState) -> int:
     _startup_readiness_check(state)
 
     _print_block(
-        "older REPL",
+        "tech-docs-rag",
         textwrap.dedent(
             f"""
             Project root: {state.project_root}
             DB:           {state.db_path}
 
             Type :help for commands.
-            Default mode: lexical (FTS5/BM25) - requires Step B.
+            Mode: {state.mode}. LLM answers: {"on" if state.llm_enabled else "off"}.
             """
         ).strip(),
     )
@@ -1734,7 +1739,7 @@ def repl(state: AppState) -> int:
 
 def main(argv: Optional[list[str]] = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Interactive REPL for older search project."
+        description="Interactive search over indexed technical documentation."
     )
     parser.add_argument(
         "--db",

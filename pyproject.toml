@@ -13,10 +13,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-web = ["streamlit>=1.30"]
-desktop = ["customtkinter>=5.2"]
 ocr = ["pytesseract>=0.3.10", "Pillow>=10.0"]          # нужен установленный Tesseract
-local-embeddings = ["sentence-transformers>=2.5", "numpy>=1.24", "hnswlib>=0.7"]
+local-embeddings = ["sentence-transformers>=2.5", "numpy>=1.24"]
 
 [dependency-groups]
 dev = ["pytest>=8"]
